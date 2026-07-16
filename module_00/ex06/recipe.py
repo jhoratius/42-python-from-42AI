@@ -21,6 +21,7 @@ cookbook = {
     }
 }
 
+cookbook["type"]["Sandwich"]
 
 ##### Manage answers from the input
 def handle_answers(answer: int):
@@ -107,7 +108,6 @@ def add_new_recipe():
             continue
         else:
             cookbook[real_recipe_name]["ingredients"].append(recipe_ingredient)
-        
 
     recipe_meal_type = input(">>> Enter the meal type of the recipe: ")
     cookbook[real_recipe_name]["meal"] = recipe_meal_type

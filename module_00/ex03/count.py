@@ -16,7 +16,7 @@ def counter(input: str, num: int):
             if char in string.punctuation:
                 i += 1
         if num == 3:
-            if char == ' ':
+            if char.isspace():
                 i += 1
     return i
 
@@ -42,11 +42,15 @@ def count(input: str):
 
 def main():
     try:
-        assert len(sys.argv) == 2, "Wrong number of arguments"
+        assert len(sys.argv) <= 2, "Wrong number of arguments"
 
         try:
-            input = sys.argv[1]
-            count(input)
+            if len(sys.argv) == 1:
+                input_str = input("Enter a string: ")
+                count(input_str)
+            else:
+                input_str = sys.argv[1]
+                count(input_str)
         except ValueError as e:
             raise e
     except AssertionError as e:

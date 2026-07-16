@@ -13,6 +13,9 @@ def printing():
     assert 1 <= len(str(kata[3])) <= 2 and 1 <= kata[3] <= 24, "hours over limits"
     assert 1 <= len(str(kata[4])) <= 2 and 1 <= kata[4] <= 59, "minutes over limits"
 
+    date = dt.datetime(*kata)
+
+    print(date.strftime("%m/%d/%Y %H:%M"))
     print(f"{kata[1]:02d}/{kata[2]:02d}/{kata[0]:04d} {kata[3]:02d}:{kata[4]:02d}")
 
 def main():

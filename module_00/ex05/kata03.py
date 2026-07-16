@@ -3,12 +3,12 @@
 import sys
 import string
 
-kata = (0, 4, 132.42222, 10000, 12345.67)
+kata = "The right format"
 
 def printing():
     length = len(kata)
     assert 0 <= length <= 42, "string higher than 42"
-    print(f"{'-' * (41 - length)}{kata}")
+    print(f"{'-' * (42 - length)}{kata}", end='')
 
 def main():
     try:

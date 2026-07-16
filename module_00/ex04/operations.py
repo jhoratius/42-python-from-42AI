@@ -14,6 +14,7 @@ def count(A: int, B: int):
         print("Quotient  :", A / B)
         print("Remainder :", A % B)
 
+
 def main():
     try:
         if len(sys.argv) != 3:
@@ -21,9 +22,9 @@ def main():
             return
         try:
             count(int(sys.argv[1]), int(sys.argv[2]))
-        except AssertionError as e:
+        except ValueError as e:
             raise e
-    except AssertionError as e:
+    except ValueError as e:
         print(f"AssertionError: {e}")
 
 if __name__ == "__main__":

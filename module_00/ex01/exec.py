@@ -3,7 +3,9 @@ import sys
 def reverse_str(input: str) -> str:
 
     # List comprehension with condition
-    swapped = "".join([char.upper() if char.islower() else char.lower() for char in input])
+    # swapped = "".join([char.upper() if char.islower() else char.lower() for char in input])
+    swapped = "".join([char.swapcase() for char in input])
+
     # print(f"swapped : {swapped}")
 
     # Reverse the string using Python slicing
@@ -11,9 +13,9 @@ def reverse_str(input: str) -> str:
 
 def main():
     try:
-        assert len(sys.argv) == 2, "Wrong number of arguments"
+        # assert len(sys.argv) == 2, "Wrong number of arguments"
         try:
-            new_rev_str = reverse_str(sys.argv[1])
+            new_rev_str = reverse_str(sys.argv[1:])
             print(new_rev_str)
         except AssertionError as e:
             raise e

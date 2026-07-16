@@ -10,8 +10,8 @@ kata = {
 }
 
 def display():
-	for key in kata:
-		print(f"{key} was created by {kata[key]}")
+	for k, v in kata.items():
+		print(f"{k} was created by {v}")
 
 def main():
     try:
