@@ -12,14 +12,20 @@ class NumpyCreator:
     def from_list(self, lst):
         # if lst not isinstance list:
 
-        if isinstance(lst, list) == False:
+        if not isinstance(lst, list):
+            print("is not a list")
             return None
-        return np.array(lst, dtype)
+        
+        if lst and isinstance(lst[0], list):
+            if any(len(row) != len(lst[0]) for row in lst):
+                return None
+
+        return np.array(lst)
 
     def from_tuple(self, tpl):
         if isinstance(tpl, tuple) == False:
             return None
-        arr = np.array(tpl, dtype)
+        arr = np.array(tpl)
         print(arr)
 
     def from_iterable(self, itr):
@@ -27,11 +33,11 @@ class NumpyCreator:
         print(arr)
 
     def from_shape(self, shape, value):
-        arr = np.array(tpl, dtype)
+        arr = np.full(shape, value)
         print(arr)
 
     def random(self, shape):
-        arr = np.array(shape)
+        arr = np.random.random(shape)
         print(arr)
 
     def identity(self, n):
