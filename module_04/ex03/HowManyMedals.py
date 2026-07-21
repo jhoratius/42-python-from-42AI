@@ -1,23 +1,27 @@
 import pandas as pd
 
-def how_many_medals(df: pd.DataFrame, name: str):
-    named_df = df[df['Name'] == name].copy()
+def how_many_medals(df: pd.DataFrame, name: str) -> dict:
 
-    if named_df.empty:
-        return {name : None}
+    athlete_df = df[df['Name'] == name]
 
-    # Creating the Series
-    # sr = pd.Series(['New York', 'Chicago', 'Toronto', None, 'Rio'])
-    
-    # sport_df = gender_year_df[gender_year_df['Sport'] == sport]
+    if athlete_df.empty:
+        return {}
+    medals_by_year = {}
 
-    # Create the Index
-    # index_ = ['City 1', 'City 2', 'City 3', 'City 4', 'City_5']
+    for year, group in athlete_df.groupby('Year'):
+        
+        gold = (group['Medal'] == 'Gold').sum()
+        silver = (group['Medal'] == 'Silver').sum()
+        bronze = (group['Medal'] == 'Bronze').sum()
 
-    # set the index
-    # sr.index = index_
+        medals_by_year[int(year)] = {
+            'G': int(gold),
+            'S': int(silver),
+            'B': int(bronze)
+        }
 
-    # Print the series
-    # print(sr)
-    
-    return {name : None}
+    years = list(medals_by_year.keys())
+    for i, year in enumerate(years):
+        print(f"{year}: {medals_by_year[year]}")
+
+    return medals_by_year
