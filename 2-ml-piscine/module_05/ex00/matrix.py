@@ -22,55 +22,112 @@ class Matrix:
 
     # def __repr__(self):
     
-    def create_matrix(shape: tuple) -> list[list[float]]:
+    def create_matrix(shape):
         rows, cols = shape
         res = [[0.0 for _ in range(cols)] for _ in range(rows)]
         return res
 
     # add : only matrices of same dimensions.
     def __add__(self, other):
-        
-        mat1 = self.data
-        mat2 = other.data
-        mat_res = [[0.0 for _ in range(mat1.shape[1])] for _ in range(mat2.shape[0])]
-        for val1 in mat1:
-            for val2 in mat2:
-                mat_res[i][j] = val1 + val2
-        # mat_res = [val1 + val2 for val1 in mat1, for val2 in mat2]
-        return mat_res
 
-    # def __radd__(self, other):
-    #     mat1 = other.data
-    #     mat2 = self.data
-    #     mat_res = [val1 + val2 for val1 in mat1, for val2 in mat2]
-    #     return mat_res
+        try:
+            if self.shape != other.shape:
+                raise ValueError(f"Shape mismatch: {self.shape} + {other.shape}")
 
-    # def __sub__(self, other):
-    #     mat1 = self.data
-    #     mat2 = other.data
-    #     mat_res = [val1 - val2 for val1 in mat1, for val2 in mat2]
-    #     return mat_res
+            mat1 = self.data
+            mat2 = other.data
+            rows, cols = self.shape
+            mat_res = [[0.0 for _ in range(cols)] for _ in range(rows)]
+            for i in range(rows):
+                for j in range(cols):
+                    mat_res[i][j] = mat1[i][j] + mat2[i][j]
+            return Matrix(mat_res)
+        except Exception as e:
+            AssertionError(f"Error: {e}")
 
-    # def __rsub__(self, other):
-    #     mat1 = other.data
-    #     mat2 = self.data
-    #     mat_res = [val1 - val2 for val1 in mat1, for val2 in mat2]
-    #     return mat_res
+    def __radd__(self, other):
+        try:
+            if self.shape != other.shape:
+                raise ValueError(f"Shape mismatch: {self.shape} + {other.shape}")
 
-    # def __truediv__(self, other):
-    #     mat1 = other.data
-    #     mat2 = self.data
-    #     mat_res = [val1 / val2 for val1 in mat1, for val2 in mat2]
-    #     return mat_res
+            mat1 = other.data
+            mat2 = self.data
+            rows, cols = self.shape
+            mat_res = [[0.0 for _ in range(cols)] for _ in range(rows)]
+            for i in range(rows):
+                for j in range(cols):
+                    mat_res[i][j] = mat1[i][j] + mat2[i][j]
+            return Matrix(mat_res)
+        except Exception as e:
+            AssertionError(f"Error: {e}")
 
-    # def __rtruediv__(self, other):
-    #     mat1 = self.data
-    #     mat2 = other.data
-    #     mat_res = [val1 / val2 for val1 in mat1, for val2 in mat2]
-    #     return mat_res
-    #     # mul : scalars, vectors and matrices , can have errors with vectors and matrices,
-    #     # returns a Vector if we perform Matrix * Vector mutliplication.
-    #     return np.__truediv__(other.data, self.data)
+    def __sub__(self, other):
+        try:
+            if self.shape != other.shape:
+                raise ValueError(f"Shape mismatch: {self.shape} + {other.shape}")
+
+            mat1 = self.data
+            mat2 = other.data
+            rows, cols = self.shape
+            mat_res = [[0.0 for _ in range(cols)] for _ in range(rows)]
+            for i in range(rows):
+                for j in range(cols):
+                    mat_res[i][j] = mat1[i][j] - mat2[i][j]
+            return Matrix(mat_res)
+        except Exception as e:
+            AssertionError(f"Error: {e}")
+
+    def __rsub__(self, other):
+        try:
+            if self.shape != other.shape:
+                raise ValueError(f"Shape mismatch: {self.shape} + {other.shape}")
+
+            mat1 = other.data
+            mat2 = self.data
+            rows, cols = self.shape
+            mat_res = [[0.0 for _ in range(cols)] for _ in range(rows)]
+            for i in range(rows):
+                for j in range(cols):
+                    mat_res[i][j] = mat1[i][j] - mat2[i][j]
+            return Matrix(mat_res)
+        except Exception as e:
+            Exception(f"Error: {e}")
+
+    def __truediv__(self, other):
+        try:
+            if self.shape != other.shape:
+                raise ValueError(f"Shape mismatch: {self.shape} + {other.shape}")
+
+            mat1 = self.data
+            mat2 = other.data
+            rows, cols = self.shape
+            mat_res = [[0.0 for _ in range(cols)] for _ in range(rows)]
+            for i in range(rows):
+                for j in range(cols):
+                    if mat2[i][j] == 0:
+                        raise ZeroDivisionError(f"Division by zero at position ({i}, {j})")
+                    mat_res[i][j] = mat1[i][j] / mat2[i][j]
+            return Matrix(mat_res)
+        except Exception as e:
+            AssertionError(f"Error: {e}")
+
+    def __rtruediv__(self, other):
+        try:
+            if self.shape != other.shape:
+                raise ValueError(f"Shape mismatch: {self.shape} + {other.shape}")
+
+            mat1 = other.data
+            mat2 = self.data
+            rows, cols = self.shape
+            mat_res = [[0.0 for _ in range(cols)] for _ in range(rows)]
+            for i in range(rows):
+                for j in range(cols):
+                    if mat2[i][j] == 0:
+                        raise ZeroDivisionError(f"Division by zero at position ({i}, {j})")
+                    mat_res[i][j] = mat1[i][j] / mat2[i][j]
+            return Matrix(mat_res)
+        except Exception as e:
+            AssertionError(f"Error: {e}")
     # MN = (M[0][0] * N[0][0] + M[0][1] * N[1][0], M[0][0] * N[0][1] + M[0][1] * N[1][1])
         #  (M[0][0] * N[0][0] + M[0][1] * N[1][0], M[0][0] * N[0][1] + M[0][1] * N[1][1])
 

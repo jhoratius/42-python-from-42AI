@@ -34,6 +34,7 @@ m1.shape
 #              [6.0, 7.0]])
 
 m1 = Matrix([[0.0, 1.0, 2.0, 3.0], [0.0, 2.0, 4.0, 6.0]])
+m3 = Matrix([[4.0, 1.0, 2.0, 3.0], [4.0, 2.0, 4.0, 6.0]])
 
 m2 = Matrix([
     [0.0, 1.0],
@@ -42,17 +43,17 @@ m2 = Matrix([
     [6.0, 7.0]
 ])
 
-print(f"add: {m1 + m2}")
-print(f"radd: {m2 + m1}")
-print(f"sub: {m1 - m2}")
-print(f"rsub: {m2 - m1}")
-print(f"truediv: {m1 / m2}")
-print(f"rtruediv: {m2 / m1}")
+print(f"add: {m1 + m3}")
+print(f"radd: {m3 + m1}")
+print(f"sub: {m1 - m3}")
+print(f"rsub: {m3 - m1}")
+print(f"truediv: {m1 / m3}")
+print(f"rtruediv: {m3 / m1}")
 
 
 
-m3 = Matrix((2,2))
-print(m3)
+# m4 = Matrix((2,2))
+# print(m4)
 
 # print(m1 * m2)
 # # Output:
